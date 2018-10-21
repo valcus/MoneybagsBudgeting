@@ -17,7 +17,7 @@ import velkus.moneybagsbudgeting.storage.models.Transaction
 
 class MainActivity : AppCompatActivity() {
 
-    var transactions : MutableList<Transaction> = ArrayList<Transaction>()
+    var transactions : MutableList<Transaction> = ArrayList()
     lateinit var transactionDao: TransactionDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         transactionDao = DatabaseFactory.getInstance(this).transactionDao
 
-        transactions = transactionDao.allTransactions
+        transactions = transactionDao.allTransactions.toMutableList()
 
         fab.setOnClickListener { _ ->
 
