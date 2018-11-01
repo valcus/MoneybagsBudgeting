@@ -44,13 +44,13 @@ class TransactionsActivity : AppCompatActivity() {
             AlertDialog.Builder(this)
                     .setNeutralButton("Deposit") { dialog, _ ->
                         if (!dialogView.amount.text.isEmpty()) {
-                            viewModel.saveTransaction(Transaction(dialogView.amount.text.toString().toDouble(), Transaction.Type.DEPOSIT, accountId))
+                            viewModel.saveTransaction(Transaction(dialogView.amount.text.toString().toDouble(), Transaction.Type.DEPOSIT, "", accountId))
                         }
                         dialog.dismiss()
                     }
                     .setPositiveButton("Spend") { dialog, _ ->
                         if (!dialogView.amount.text.isEmpty()) {
-                            viewModel.saveTransaction(Transaction(("-" + dialogView.amount.text.toString()).toDouble(), Transaction.Type.WITHDRAW, accountId))
+                            viewModel.saveTransaction(Transaction(("-" + dialogView.amount.text.toString()).toDouble(), Transaction.Type.WITHDRAW, "", accountId))
                         }
                         dialog.dismiss()
                     }

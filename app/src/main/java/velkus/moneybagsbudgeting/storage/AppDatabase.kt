@@ -8,7 +8,7 @@ import velkus.moneybagsbudgeting.storage.dao.TransactionDao
 import velkus.moneybagsbudgeting.storage.models.Account
 import velkus.moneybagsbudgeting.storage.models.Transaction
 
-@Database(entities = [Transaction::class, Account::class], version = 1)
+@Database(entities = [Transaction::class, Account::class], version = 2)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract val transactionDao: TransactionDao

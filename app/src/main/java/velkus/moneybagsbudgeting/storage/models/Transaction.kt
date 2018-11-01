@@ -12,10 +12,11 @@ import java.util.Locale
 @Entity(foreignKeys = [ForeignKey(entity = Account::class, parentColumns = arrayOf("id"), childColumns = arrayOf("accountId"))])
 class Transaction() {
 
-    constructor(amount: Double?, type: Type, accountId: Long?) : this() {
+    constructor(amount: Double?, type: Type, description: String, accountId: Long?) : this() {
         this.amount = amount
         this.type = type
         this.accountId = accountId
+        this.description = description
     }
 
     @PrimaryKey(autoGenerate = true)
@@ -27,8 +28,11 @@ class Transaction() {
 
     var date: Date? = null
 
+    var description: String = ""
+
     var typeOrdinal: Int = 0
 
+    //does not need @Ignore because it has no backing field
     var type: Type
         get() = Type.values()[typeOrdinal]
         set(type) {
