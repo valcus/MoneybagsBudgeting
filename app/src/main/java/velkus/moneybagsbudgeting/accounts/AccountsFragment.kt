@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.accounts_fragment.view.*
 import velkus.moneybagsbudgeting.R
 import velkus.moneybagsbudgeting.storage.DatabaseFactory
 
@@ -27,9 +28,9 @@ class AccountsFragment : Fragment() {
         val view = inflater.inflate(R.layout.accounts_fragment, container, false)
 
         viewManager = LinearLayoutManager(activity)
-        viewAdapter = AccountRecyclerViewAdapter()
+        viewAdapter = AccountRecyclerViewAdapter(context!!)
 
-        val accountsRecyclerView = view.findViewById<RecyclerView>(R.id.accountsView)
+        val accountsRecyclerView = view.accountsView
         accountsRecyclerView.layoutManager = viewManager
         accountsRecyclerView.adapter = viewAdapter
 

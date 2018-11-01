@@ -1,5 +1,6 @@
 package velkus.moneybagsbudgeting.storage.dao
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Delete
 import android.arch.persistence.room.Insert
@@ -12,7 +13,10 @@ import velkus.moneybagsbudgeting.storage.models.Transaction
 interface TransactionDao {
 
     @get:Query("SELECT * FROM `transaction`")
-    val allTransactions: List<Transaction>
+    val allTransactions: LiveData<List<Transaction>>
+
+    @Query("SELECT * FROM `transaction` WHERE accountId = :accountId")
+    fun transactionsByAccount(accountId: Long): LiveData<List<Transaction>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveTransaction(transaction: Transaction)
