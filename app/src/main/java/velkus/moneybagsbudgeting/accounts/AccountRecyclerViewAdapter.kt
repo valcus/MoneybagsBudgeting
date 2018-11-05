@@ -15,7 +15,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.account_card.view.*
 import velkus.moneybagsbudgeting.R
 import velkus.moneybagsbudgeting.storage.DatabaseFactory
-import velkus.moneybagsbudgeting.storage.models.Account
+import velkus.moneybagsbudgeting.storage.models.AccountWithTransactions
 import velkus.moneybagsbudgeting.transactions.TransactionAddHelper
 import velkus.moneybagsbudgeting.transactions.TransactionsActivity
 import velkus.moneybagsbudgeting.util.MoneyFormatter
@@ -29,7 +29,7 @@ class AccountRecyclerViewAdapter(private val context: Context) : RecyclerView.Ad
         val optionsButton: ImageButton = view.accountOptions
     }
 
-    var accounts: List<Account> = listOf()
+    var accounts: List<AccountWithTransactions> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -48,7 +48,11 @@ class AccountRecyclerViewAdapter(private val context: Context) : RecyclerView.Ad
     override fun onBindViewHolder(holder: AccountViewHolder, position: Int) {
         val account = accounts[position]
         holder.titleView.text = account.name
-        holder.balanceView.text = MoneyFormatter.format(DatabaseFactory.getInstance(context).transactionDao.getAccountBalance(account.id!!))
+        var accountBalance = 0.0
+        account.transactions.forEach { transaction ->
+            accountBalance += transaction.amount!!
+        }
+        holder.balanceView.text = MoneyFormatter.format(accountBalance)
         holder.accountCard.setOnClickListener { _ ->
             val i = Intent(context, TransactionsActivity::class.java)
             i.putExtra("accountId", account.id!!)

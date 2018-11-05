@@ -7,6 +7,7 @@ object MoneyFormatter {
     fun format(amount: Double) : String {
         val currencySymbol = Currency.getInstance(Locale.getDefault()).symbol
         val df = DecimalFormat("#,##0.00")
-        return currencySymbol + " " + df.format(amount)
+        val prefix: String = if (amount < 0) "-" else ""
+        return prefix + currencySymbol + df.format(Math.abs(amount))
     }
 }
