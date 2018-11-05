@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
+import kotlinx.android.synthetic.main.accounts_activity.*
 import kotlinx.android.synthetic.main.add_account_layout.view.*
-import kotlinx.android.synthetic.main.content_main.*
 import velkus.moneybagsbudgeting.R
 import velkus.moneybagsbudgeting.storage.DatabaseFactory
 import velkus.moneybagsbudgeting.storage.dao.AccountDao
@@ -44,7 +44,7 @@ class AccountsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.addAccount -> {
             val layoutInflater = LayoutInflater.from(this)
-            val dialogView = layoutInflater.inflate(R.layout.add_account_layout, parentLayout, false)
+            val dialogView = layoutInflater.inflate(R.layout.add_account_layout, container, false)
 
             AlertDialog.Builder(this)
                     .setPositiveButton("Add") { dialog, _ ->

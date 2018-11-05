@@ -8,9 +8,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.transaction_add_layout.view.*
+import kotlinx.android.synthetic.main.transactions_activity.*
 import velkus.moneybagsbudgeting.R
 import velkus.moneybagsbudgeting.storage.DatabaseFactory
 import velkus.moneybagsbudgeting.storage.models.Transaction
@@ -39,7 +38,7 @@ class TransactionsActivity : AppCompatActivity() {
         fab.setOnClickListener { _ ->
 
             val layoutInflater = LayoutInflater.from(this)
-            val dialogView = layoutInflater.inflate(R.layout.transaction_add_layout, parentLayout, false)
+            val dialogView = layoutInflater.inflate(R.layout.transaction_add_layout, container, false)
 
             AlertDialog.Builder(this)
                     .setNeutralButton("Deposit") { dialog, _ ->

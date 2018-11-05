@@ -13,5 +13,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/baseline_attach_money_white_18" />
+        app:srcCompat="@drawable/ic_attach_money_24" />
 </FrameLayout>
