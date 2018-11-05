@@ -13,9 +13,11 @@ import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.account_card.view.*
 import velkus.moneybagsbudgeting.R
+import velkus.moneybagsbudgeting.storage.DatabaseFactory
 import velkus.moneybagsbudgeting.storage.models.Account
 import velkus.moneybagsbudgeting.transactions.TransactionAddHelper
 import velkus.moneybagsbudgeting.transactions.TransactionsActivity
+import velkus.moneybagsbudgeting.util.MoneyFormatter
 
 class AccountRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<AccountRecyclerViewAdapter.AccountViewHolder>() {
 
@@ -45,10 +47,10 @@ class AccountRecyclerViewAdapter(private val context: Context) : RecyclerView.Ad
     override fun onBindViewHolder(holder: AccountViewHolder, position: Int) {
         val account = accounts[position]
         holder.titleView.text = account.name
-        holder.balanceView.text = account.id.toString()
+        holder.balanceView.text = MoneyFormatter.format(DatabaseFactory.getInstance(context).transactionDao.getAccountBalance(account.id!!))
         holder.accountCard.setOnClickListener { _ ->
             val i = Intent(context, TransactionsActivity::class.java)
-            i.putExtra("accountId", account.id)
+            i.putExtra("accountId", account.id!!)
             context.startActivity(i)
         }
         holder.optionsButton.setOnClickListener { view ->

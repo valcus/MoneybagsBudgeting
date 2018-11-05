@@ -26,4 +26,7 @@ interface TransactionDao {
 
     @Query("SELECT * FROM `transaction` WHERE accountId IS :accountId")
     fun getTransactionsFromAccountId(accountId: Int): List<Transaction>
+
+    @Query("SELECT SUM(amount) FROM `transaction` WHERE accountId IS :accountId")
+    fun getAccountBalance(accountId: Long): Double
 }
