@@ -8,7 +8,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import velkus.moneybagsbudgeting.storage.AppDatabase
-import velkus.moneybagsbudgeting.storage.DatabaseFactory
+import velkus.moneybagsbudgeting.storage.Migrations
 
 @RunWith(AndroidJUnit4::class)
 class MigrationTest {
@@ -21,11 +21,11 @@ class MigrationTest {
 
     @Test
     fun migrate1to2() {
-        var db = helper.createDatabase(TEST_DB, 1)
+        val db = helper.createDatabase(TEST_DB, 1)
 
         db.execSQL("INSERT INTO `Transaction`(date, amount, typeOrdinal, accountId) VALUES(15, 0, 5, 2)")
-
         db.close()
-        db = helper.runMigrationsAndValidate(TEST_DB, 2, true, DatabaseFactory.MIGRATION_1_2)
+
+        helper.runMigrationsAndValidate(TEST_DB, 2, true, Migrations.MIGRATION_1_2)
     }
 }
