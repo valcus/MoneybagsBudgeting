@@ -2,6 +2,7 @@ package velkus.moneybagsbudgeting.accounts
 
 import android.content.Context
 import android.content.Intent
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -69,8 +70,13 @@ class AccountRecyclerViewAdapter(private val context: Context) : RecyclerView.Ad
                         true
                     }
                     R.id.deleteAccount -> {
-                        //todo implement
-                        Toast.makeText(context, "account deleting not yet implemented.", Toast.LENGTH_LONG).show()
+                        AlertDialog.Builder(context)
+                                .setPositiveButton(R.string.delete) { dialog, _ ->
+                                    DatabaseFactory.getInstance(context).accountDao.deleteAccount(account)
+                                    dialog.dismiss()
+                                }
+                                .setMessage(R.string.delete_confirmation)
+                                .show()
                         true
                     }
                     else -> false
