@@ -11,19 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="$5,000,000" />
-
-    <ImageView
-        android:id="@+id/divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/dividerColor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/amount"
-        app:srcCompat="?attr/dividerHorizontal" />
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        tools:text="$5,000,000" />
 
     <TextView
         android:id="@+id/description"
@@ -31,6 +21,7 @@
         android:layout_height="wrap_content"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Placeholder description"
         tools:text="Description" />
 </android.support.constraint.ConstraintLayout>
