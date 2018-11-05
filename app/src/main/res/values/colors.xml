@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="dividerColor">#1FFFFFFF</color>
-    <color name="cardColor">#303030</color>
     <color name="textColor">#FFFFFF</color>
     <color name="iconColor">#FFFFFF</color>
 </resources>
