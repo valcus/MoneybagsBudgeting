@@ -5,7 +5,7 @@ import android.arch.persistence.room.ForeignKey
 import android.arch.persistence.room.PrimaryKey
 
 @Entity(foreignKeys = [ForeignKey(entity = Account::class, parentColumns = arrayOf("id"), childColumns = arrayOf("sourceId"))])
-class Account() {
+open class Account() {
 
     var name: String = ""
 
