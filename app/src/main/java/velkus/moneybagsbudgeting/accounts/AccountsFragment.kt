@@ -41,7 +41,7 @@ class AccountsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(activity!!, AccountsViewModelFactory(DatabaseFactory.getInstance(context!!).accountDao)).get(AccountsViewModel::class.java)
 
-        viewModel.accountsWithTransactions.observe(this, Observer { accounts ->
+        viewModel.accountsWithAssociations.observe(this, Observer { accounts ->
             viewAdapter.accounts = accounts!!.toMutableList()
         })
     }

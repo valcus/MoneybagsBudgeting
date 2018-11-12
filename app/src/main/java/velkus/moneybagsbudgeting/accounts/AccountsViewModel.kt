@@ -5,6 +5,6 @@ import velkus.moneybagsbudgeting.storage.dao.AccountDao
 
 class AccountsViewModel(accountDao: AccountDao) : ViewModel() {
 
-    val accountsWithTransactions = accountDao.allAccountsWithTransactions
+    val accountsWithAssociations = accountDao.allAccountsWithAssociations
 
 }

@@ -13,11 +13,11 @@ import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.account_card.view.*
+import velkus.moneybagsbudgeting.MainActivity
 import velkus.moneybagsbudgeting.R
 import velkus.moneybagsbudgeting.storage.DatabaseFactory
-import velkus.moneybagsbudgeting.storage.models.AccountWithTransactions
+import velkus.moneybagsbudgeting.storage.models.AccountWithAssociations
 import velkus.moneybagsbudgeting.transactions.TransactionAddHelper
-import velkus.moneybagsbudgeting.transactions.TransactionsActivity
 import velkus.moneybagsbudgeting.util.MoneyFormatter
 
 class AccountRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<AccountRecyclerViewAdapter.AccountViewHolder>() {
@@ -29,7 +29,7 @@ class AccountRecyclerViewAdapter(private val context: Context) : RecyclerView.Ad
         val optionsButton: ImageButton = view.accountOptions
     }
 
-    var accounts: List<AccountWithTransactions> = listOf()
+    var accounts: List<AccountWithAssociations> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -54,7 +54,7 @@ class AccountRecyclerViewAdapter(private val context: Context) : RecyclerView.Ad
         }
         holder.balanceView.text = MoneyFormatter.format(accountBalance)
         holder.accountCard.setOnClickListener { _ ->
-            val i = Intent(context, TransactionsActivity::class.java)
+            val i = Intent(context, MainActivity::class.java)
             i.putExtra("accountId", account.id!!)
             context.startActivity(i)
         }
