@@ -3,19 +3,17 @@ package velkus.moneybagsbudgeting.storage.models
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.ForeignKey
 import android.arch.persistence.room.PrimaryKey
-
-import java.text.DecimalFormat
-import java.util.Currency
-import java.util.Date
-import java.util.Locale
+import velkus.moneybagsbudgeting.util.MoneyFormatter
+import java.util.*
 
 @Entity(foreignKeys = [ForeignKey(entity = Account::class, parentColumns = arrayOf("id"), childColumns = arrayOf("accountId"))])
 class Transaction() {
 
-    constructor(amount: Double?, type: Type, accountId: Long?) : this() {
+    constructor(amount: Double?, type: Type, description: String, accountId: Long?) : this() {
         this.amount = amount
         this.type = type
         this.accountId = accountId
+        this.description = description
     }
 
     @PrimaryKey(autoGenerate = true)
@@ -27,8 +25,11 @@ class Transaction() {
 
     var date: Date? = null
 
+    var description: String = ""
+
     var typeOrdinal: Int = 0
 
+    //does not need @Ignore because it has no backing field
     var type: Type
         get() = Type.values()[typeOrdinal]
         set(type) {
@@ -40,9 +41,7 @@ class Transaction() {
     }
 
     override fun toString(): String {
-        val currencySymbol = Currency.getInstance(Locale.getDefault()).symbol
-        val df = DecimalFormat("#,##0.00")
-        return currencySymbol + " " + df.format(amount)
+        return MoneyFormatter.format(amount!!)
     }
 
     enum class Type {

@@ -16,6 +16,7 @@ object DatabaseFactory {
                 instance!!
             } else {
                 instance = Room.databaseBuilder(context, AppDatabase::class.java, "moneybags.db")
+                        .addMigrations(Migrations.MIGRATION_1_2)
                         .allowMainThreadQueries()
                         .build()
                 instance!!
