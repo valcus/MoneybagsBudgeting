@@ -42,6 +42,6 @@ class StorageReadWriteTest {
         accountDao!!.saveAccount(account2)
 
         val accountList = accountDao!!.allAccounts
-        assertThat(2, equalTo(accountList.size))
+        assertThat(2, equalTo(accountList.value!!.size))
     }
 }

@@ -6,9 +6,10 @@ import android.arch.persistence.room.TypeConverters
 import velkus.moneybagsbudgeting.storage.dao.AccountDao
 import velkus.moneybagsbudgeting.storage.dao.TransactionDao
 import velkus.moneybagsbudgeting.storage.models.Account
+import velkus.moneybagsbudgeting.storage.models.SourceAccount
 import velkus.moneybagsbudgeting.storage.models.Transaction
 
-@Database(entities = [Transaction::class, Account::class], version = 2)
+@Database(entities = [Transaction::class, Account::class, SourceAccount::class], version = 3)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract val transactionDao: TransactionDao
